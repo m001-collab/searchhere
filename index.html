@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Tile Rescue Docs 🔍</title>
+  <style>
+    body {
+      font-family: Arial;
+      max-width: 700px;
+      margin: 50px auto;
+      background: #f9f9f9;
+    }
+    input {
+      width: 100%;
+      padding: 12px;
+      font-size: 16px;
+      margin-bottom: 20px;
+    }
+    .card {
+      background: white;
+      padding: 15px;
+      margin-bottom: 10px;
+      border-radius: 10px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    a {
+      text-decoration: none;
+      color: #333;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+<h2>🔍 Search Docs</h2>
+<input id="search" placeholder="Type something..." />
+
+<div id="results"></div>
+
+<script>
+const pages = [
+  {
+    title: "Tile Rescue Knowledge Base",
+    url: "https://tilerescue.atlassian.net/wiki/external/MWQ5MzZiNGRiNDY2NGZmMWI2YTBjODIwZjFiYWQwMWM"
+  },
+  {
+    title: "Technical Advice Registry",
+    url: "https://tilerescue.atlassian.net/wiki/external/YTY0ZWQ5MzUwYjE3NDI4ZThmMzg4MWU1Y2ZmOTE5MmE"
+  },
+  {
+    title: "test",
+    url: "https://tilerescue.atlassian.net/wiki/external/CCC"
+  }
+];
+
+function display(list) {
+  const container = document.getElementById("results");
+  container.innerHTML = "";
+
+  list.forEach(p => {
+    container.innerHTML += `
+      <div class="card">
+        <a href="${p.url}" target="_blank">${p.title}</a>
+      </div>
+    `;
+  });
+}
+//   list.forEach(p => {
+//     container.innerHTML += `
+//       <div class="card">
+//         <a href="${p.url}" target="_blank">${p.title}</a>
+//         <p>${p.content}</p>
+//       </div>
+//     `;
+//   });
+// }
+
+document.getElementById("search").addEventListener("input", e => {
+  const q = e.target.value.toLowerCase();
+
+  const filtered = pages.filter(p =>
+    p.title.toLowerCase().includes(q)
+  );
+
+  display(filtered);
+});
+
+display(pages);
+</script>
+
+</body>
+</html>
